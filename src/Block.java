@@ -3,6 +3,8 @@ import java.awt.*;
 public class Block {
 
     private float x, y;
+    private float vx = 0;
+    private float vy = 0;
     private int size;
     private Color color;
 
@@ -19,8 +21,10 @@ public class Block {
     }
 
     public void update(float delta) {
-        x += 200 * delta;
-        y += 200 * delta;
+        handleInput();
+
+        x += vx * delta;
+        y += vy * delta;
 
         if(x > World.WIDTH) {
             x = -size;
@@ -28,6 +32,20 @@ public class Block {
         if(y > World.HEIGHT) {
             y = -size;
         }
+    }
+
+    public void handleInput() {
+        if(Input.W)
+            vy = -200;
+        else if(Input.S)
+            vy = 200;
+        else
+            vy = 0;
+        if(Input.A)
+            vx = -200;
+        else if(Input.D)
+            vx = 200;
+        else vx = 0;
     }
 
 }

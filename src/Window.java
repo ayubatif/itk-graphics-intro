@@ -9,6 +9,9 @@ public class Window {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
 
+        Input input = new Input();
+        window.addKeyListener(input);
+
         window.add(world);
         window.pack();
         window.setLocationRelativeTo(null);
