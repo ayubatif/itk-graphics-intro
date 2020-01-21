@@ -12,6 +12,8 @@ public class World extends JPanel {
 
     private Block block;
 
+    private Snowflake[] snowflakes;
+
     public World(int WIDTH, int HEIGHT) {
         World.WIDTH = WIDTH;
         World.HEIGHT = HEIGHT;
@@ -23,6 +25,11 @@ public class World extends JPanel {
         g2 = buffer.createGraphics();
 
         block = new Block(50, 50, 100, Color.CYAN);
+
+        snowflakes = new Snowflake[100];
+        for(int i = 0; i < snowflakes.length; i++) {
+            snowflakes[i] = new Snowflake();
+        }
     }
 
     public void start() {
@@ -47,11 +54,19 @@ public class World extends JPanel {
 
         block.draw(g2);
 
+        for(int i = 0; i < snowflakes.length; i++) {
+            snowflakes[i].draw(g2);
+        }
+
         g.drawImage(buffer, 0, 0, WIDTH, HEIGHT, null);
     }
 
     public void update(float delta) {
         block.update(delta);
+
+        for(int i = 0; i < snowflakes.length; i++) {
+            snowflakes[i].update(delta);
+        }
     }
 
 }
