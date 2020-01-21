@@ -14,6 +14,8 @@ public class Window {
         window.setLocationRelativeTo(null);
 
         window.setVisible(true);
+
+        world.start();
     }
 
     public static void main(String[] args) {

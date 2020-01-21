@@ -14,4 +14,16 @@ public class World extends JPanel {
         setPreferredSize(screenSize);
     }
 
+    public void start() {
+        repaint();
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, WIDTH, HEIGHT);
+
+        repaint();
+    }
+
 }
