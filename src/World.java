@@ -1,7 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class World extends JPanel {
+
+    private BufferedImage buffer;
+    private Graphics g2;
 
     public static int WIDTH, HEIGHT;
     public boolean running = false;
@@ -14,6 +18,9 @@ public class World extends JPanel {
 
         Dimension screenSize = new Dimension(WIDTH, HEIGHT);
         setPreferredSize(screenSize);
+
+        buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+        g2 = buffer.createGraphics();
 
         block = new Block(50, 50, 100, Color.CYAN);
     }
@@ -35,10 +42,12 @@ public class World extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, WIDTH, HEIGHT);
+        g2.setColor(Color.BLACK);
+        g2.fillRect(0, 0, WIDTH, HEIGHT);
 
-        block.draw(g);
+        block.draw(g2);
+
+        g.drawImage(buffer, 0, 0, WIDTH, HEIGHT, null);
     }
 
     public void update(float delta) {
