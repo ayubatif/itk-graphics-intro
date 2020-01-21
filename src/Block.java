@@ -32,6 +32,13 @@ public class Block {
         if(y > World.HEIGHT) {
             y = -size;
         }
+
+        if(x < -size) {
+            x = World.WIDTH;
+        }
+        if(y < -size) {
+            y = World.HEIGHT;
+        }
     }
 
     public void handleInput() {
